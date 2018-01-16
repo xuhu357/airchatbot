@@ -1,27 +1,13 @@
-
-# coding: utf-8
-
-# In[1]:
-
-
-
+# coding: utf8
 #!/usr/bin/env python
 
 from __future__ import print_function
 from future.standard_library import install_aliases
 install_aliases()
 
-
-# In[2]:
-
-
 from urllib.parse import urlparse, urlencode
 from urllib.request import urlopen, Request
 from urllib.error import HTTPError
-
-
-# In[3]:
-
 
 import json
 import os
@@ -30,24 +16,12 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-
-# In[4]:
-
-
 from flask import Flask
 from flask import request
 from flask import make_response
 
-
-# In[5]:
-
-
 # Flask app should start in global layout
 app = Flask(__name__)
-
-
-# In[6]:
-
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
@@ -63,12 +37,6 @@ def webhook():
     r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
     return r
-
-
-# ### check point: action 이름이 정확한지, 필수 파라미터 값이 있는지
-
-# In[7]:
-
 
 def processRequest(req):
     if req.get("result").get("action") == "airport_pic":
@@ -113,14 +81,7 @@ def processRequest(req):
     else:
         return {}
     
-    
-
-
-# In[ ]:
-
-
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
     print("Starting app on port %d" % port)
     app.run(debug=False, port=port, host='0.0.0.0')
-
