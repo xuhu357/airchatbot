@@ -78,7 +78,7 @@ def processRequest(req):
             # "contextOut": [],
             "source": "airport-robert-customized"
         }
-	elif req.get("result").get("action") == "call_action":
+    elif req.get("result").get("action") == "call_action":
         result = req.get("result")
         parameters = result.get("parameters")
         contact_name = parameters.get("contact_name")
@@ -86,11 +86,11 @@ def processRequest(req):
         speech = ""
 
         if contact_name is None or not contact_name:    
-			speech = "통화상대의 이름 혹은 전화번호를 입력해주세요."
+	    speech = "통화상대의 이름 혹은 전화번호를 입력해주세요."
         elif contact_name == "호":    # 서호 이면, 
-			speech = "서호, 이호, 김호, 어느 호를 말씀하시는가요?"
-		else:
-			speech = "통화연결 중 입니다."
+	    speech = "서호, 이호, 김호, 어느 호를 말씀하시는가요?"
+	else:
+	    speech = "통화연결 중 입니다."
         return {
             "speech": speech,
             "displayText": speech,
